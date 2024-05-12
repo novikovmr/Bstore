@@ -1,0 +1,13 @@
+.header__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.header__navigation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+

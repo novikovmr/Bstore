@@ -585,14 +585,50 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"1SICI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "router", ()=>router);
 var _navigo = require("navigo");
 var _navigoDefault = parcelHelpers.interopDefault(_navigo);
-var _headerJs = require("./components/header/Header.js");
+var _headerJs = require("/src/js/components/header/Header.js");
+var _pageContainerJs = require("/src/js/components/pageContainer/PageContainer.js");
 const app = document.getElementById("app");
-const header = (0, _headerJs.getHeader)();
-app.append(header);
+const router = new (0, _navigoDefault.default)("/");
+const header = (0, _headerJs.getHeader)(router);
+const pageContainer = (0, _pageContainerJs.getPageContainer)();
+router.on("/", async ()=>{
+    pageContainer.innerHTML = "";
+    const pageModuleMain = await require("443e20a275e2f316");
+    const mainPage = pageModuleMain.getMainPage();
+    pageContainer.append(mainPage);
+});
+router.on("/catalog", async ()=>{
+    pageContainer.innerHTML = "";
+    const pageModuleCatalog = await require("ca6fca4a03e11cee");
+    const catalogPage = pageModuleCatalog.getCatalogPage();
+    pageContainer.append(catalogPage);
+});
+router.on("/about", async ()=>{
+    pageContainer.innerHTML = "";
+    const pageModuleAbout = await require("31662a4341e07b78");
+    const aboutPage = pageModuleAbout.getAboutPage();
+    pageContainer.append(aboutPage);
+});
+router.on("/pay", async ()=>{
+    pageContainer.innerHTML = "";
+    const pageModulePay = await require("9b072e1d87d03c49");
+    const payPage = pageModulePay.getPayPage();
+    pageContainer.append(payPage);
+});
+router.on("/delivery", async ()=>{
+    pageContainer.innerHTML = "";
+    const pageModuleDelivery = await require("b5b50ac6227ff0ca");
+    const deliveryPage = pageModuleDelivery.getDeliveryPage();
+    pageContainer.append(deliveryPage);
+});
+router.resolve();
+app.append(header, pageContainer);
 
-},{"navigo":"fuSlc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/header/Header.js":"gP8EL"}],"fuSlc":[function(require,module,exports) {
+},{"navigo":"fuSlc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","/src/js/components/header/Header.js":"gP8EL","/src/js/components/pageContainer/PageContainer.js":"jroh0","443e20a275e2f316":"jazuh","ca6fca4a03e11cee":"4iSxT","31662a4341e07b78":"cYpNA","9b072e1d87d03c49":"9u3nA","b5b50ac6227ff0ca":"3ofVA"}],"fuSlc":[function(require,module,exports) {
 !function(t, n) {
     module.exports = n();
 }("undefined" != typeof self ? self : this, function() {
@@ -1145,9 +1181,9 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getHeader", ()=>getHeader);
-var _basketJs = require("/src/js/components/Basket/Basket.js");
+var _headerMenu = require("/src/js/components/Header__menu/Header__menu");
+var _headerCss = require("./Header.css");
 var _logoJs = require("/src/js/components/logo/Logo.js");
-var _navLinkJs = require("/src/js/components/NavLink/NavLink.js");
 function getHeader() {
     const header = document.createElement("header");
     header.classList.add("header");
@@ -1155,23 +1191,74 @@ function getHeader() {
     container.classList.add("container", "header__container");
     const logo = (0, _logoJs.getLogo)();
     logo.classList.add("header__logo");
-    const nav = document.createElement("nav");
-    nav.classList.add("navigation", "header__navigation");
-    const basketBtn = (0, _basketJs.getBasketBtn)();
-    const links = {
-        "catalog": (0, _navLinkJs.getNavLink)("/", "\u041A\u0430\u0442\u0430\u043B\u043E\u0433"),
-        "about": (0, _navLinkJs.getNavLink)("/", "\u041E \u043D\u0430\u0441"),
-        "pay": (0, _navLinkJs.getNavLink)("/", "\u041E\u043F\u043B\u0430\u0442\u0430"),
-        "delivery": (0, _navLinkJs.getNavLink)("/", "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430"),
-        "basket": basketBtn
-    };
-    for(const oneLink in links)nav.append(links[oneLink]);
-    container.append(logo, nav);
+    const headerMenu = (0, _headerMenu.getHeaderMenu)();
+    container.append(logo, headerMenu);
     header.append(container);
     return header;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","/src/js/components/logo/Logo.js":"kAche","/src/js/components/NavLink/NavLink.js":"4DtYj","/src/js/components/Basket/Basket.js":"OLafT"}],"kAche":[function(require,module,exports) {
+},{"/src/js/components/Header__menu/Header__menu":"99DHK","./Header.css":"a0VBO","/src/js/components/logo/Logo.js":"kAche","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"99DHK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getHeaderMenu", ()=>getHeaderMenu);
+var _headerMenuCss = require("./Header__menu.css");
+var _basketJs = require("/src/js/components/Basket/Basket.js");
+var _navLink = require("/src/js/components/NavLink/NavLink");
+var _main = require("../../main");
+function getHeaderMenu() {
+    const menu = document.createElement("div");
+    menu.classList.add("menu", "header__menu");
+    const navigation = document.createElement("nav");
+    navigation.classList.add("navigation", "header__navigation");
+    const basketBtn = (0, _basketJs.getBasketBtn)();
+    const links = {
+        "catalog": (0, _navLink.getNavLink)("/catalog", "\u041A\u0430\u0442\u0430\u043B\u043E\u0433"),
+        "about": (0, _navLink.getNavLink)("/about", "\u041E \u043D\u0430\u0441"),
+        "pay": (0, _navLink.getNavLink)("/pay", "\u041E\u043F\u043B\u0430\u0442\u0430"),
+        "delivery": (0, _navLink.getNavLink)("/delivery", "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430")
+    };
+    for(const elem in links)navigation.append(links[elem]);
+    menu.append(navigation, basketBtn);
+    return menu;
+}
+
+},{"./Header__menu.css":"jbew9","/src/js/components/Basket/Basket.js":"OLafT","/src/js/components/NavLink/NavLink":"4DtYj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../main":"1SICI"}],"jbew9":[function() {},{}],"OLafT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getBasketBtn", ()=>getBasketBtn);
+var _basketCss = require("./basket.css");
+var _basket2Svg = require("bundle-text:/src/assets/img/basket2.svg");
+var _basket2SvgDefault = parcelHelpers.interopDefault(_basket2Svg);
+function getBasketBtn() {
+    const basketBtn = document.createElement("a");
+    basketBtn.classList.add("basket-btn");
+    basketBtn.href = "/";
+    basketBtn.innerHTML = (0, _basket2SvgDefault.default);
+    return basketBtn;
+}
+
+},{"./basket.css":"ilSAs","bundle-text:/src/assets/img/basket2.svg":"hkip4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ilSAs":[function() {},{}],"hkip4":[function(require,module,exports) {
+module.exports = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->\n<svg fill=\"#000000\" height=\"800px\" width=\"800px\" version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 189.948 189.948\" xml:space=\"preserve\">\n<g>\n\t<g>\n\t\t<g>\n\t\t\t<path d=\"M164.613,56.66L132.259,9.34c-2.371-3.467-7.106-4.357-10.576-1.986c-3.469,2.374-4.357,7.106-1.986,10.576\n\t\t\t\tl26.437,38.659H43.815L70.247,17.93c2.374-3.469,1.484-8.202-1.986-10.576C64.792,4.98,60.057,5.873,57.688,9.34L25.334,56.66\n\t\t\t\tC11.248,57.375,0,69.026,0,83.29c0,7.033,2.787,13.69,7.74,18.682l10.708,63.311c0.378,10.343,8.91,18.641,19.341,18.641h114.367\n\t\t\t\tc10.431,0,18.963-8.296,19.341-18.641l10.708-63.308c4.953-4.994,7.743-11.651,7.743-18.684\n\t\t\t\tC189.947,69.029,178.699,57.375,164.613,56.66z M170.373,92.179l-2.252,1.811l-11.722,69.306l-0.107,1.268\n\t\t\t\tc0,2.28-1.854,4.139-4.137,4.139H37.789c-2.283,0-4.139-1.856-4.139-4.139L21.821,93.992l-2.25-1.811\n\t\t\t\tc-2.77-2.229-4.357-5.471-4.357-8.894c0-6.333,5.148-11.481,11.476-11.481h136.558c6.328,0,11.476,5.151,11.476,11.481\n\t\t\t\tC174.73,86.713,173.143,89.955,170.373,92.179z\"></path>\n\t\t\t<path d=\"M131.793,91.687c-4.202,0-7.609,3.406-7.609,7.609v53.333c0,4.202,3.406,7.609,7.609,7.609s7.609-3.406,7.609-7.609\n\t\t\t\tV99.295C139.401,95.093,135.995,91.687,131.793,91.687z\"></path>\n\t\t\t<path d=\"M94.975,91.687c-4.202,0-7.609,3.406-7.609,7.609v53.333c0,4.202,3.406,7.609,7.609,7.609\n\t\t\t\tc4.202,0,7.609-3.406,7.609-7.609V99.295C102.584,95.093,99.177,91.687,94.975,91.687z\"></path>\n\t\t\t<path d=\"M58.152,91.687c-4.202,0-7.609,3.406-7.609,7.609v53.333c0,4.202,3.406,7.609,7.609,7.609s7.609-3.406,7.609-7.609\n\t\t\t\tV99.295C65.763,95.093,62.355,91.687,58.152,91.687z\"></path>\n\t\t</g>\n\t</g>\n</g>\n</svg>";
+
+},{}],"4DtYj":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getNavLink", ()=>getNavLink);
+var _mainJs = require("/src/js/main.js");
+var _navLinkCss = require("./NavLink.css");
+function getNavLink(path, title = "") {
+    const link = document.createElement("a");
+    link.href = path;
+    link.classList.add("navigation__link");
+    link.textContent = title;
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        (0, _mainJs.router).navigate(path);
+    });
+    return link;
+}
+
+},{"./NavLink.css":"hHZ1Z","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","/src/js/main.js":"1SICI"}],"hHZ1Z":[function() {},{}],"a0VBO":[function() {},{}],"kAche":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getLogo", ()=>getLogo);
@@ -1224,36 +1311,167 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"4DtYj":[function(require,module,exports) {
+},{}],"jroh0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getNavLink", ()=>getNavLink);
-function getNavLink(path, title = "") {
-    const link = document.createElement("a");
-    link.href = path;
-    link.classList.add("navigation__link");
-    link.textContent = title;
-    return link;
+parcelHelpers.export(exports, "getPageContainer", ()=>getPageContainer);
+function getPageContainer() {
+    const main = document.createElement("main");
+    main.classList.add("main", "page-container");
+    return main;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"OLafT":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getBasketBtn", ()=>getBasketBtn);
-var _basketCss = require("./basket.css");
-var _basketSvg = require("bundle-text:/src/assets/img/basket.svg");
-var _basketSvgDefault = parcelHelpers.interopDefault(_basketSvg);
-function getBasketBtn() {
-    const basketBtn = document.createElement("a");
-    basketBtn.classList.add("basket-btn");
-    basketBtn.href = "/";
-    basketBtn.innerHTML = (0, _basketSvgDefault.default);
-    return basketBtn;
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jazuh":[function(require,module,exports) {
+module.exports = Promise.all([
+    require("d72c1a5c51984937")(require("9c6c8a12c057d5a7").getBundleURL("10Mjw") + "mainPage.5679f0c2.css" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    }),
+    require("d6d80187216049eb")(require("9c6c8a12c057d5a7").getBundleURL("10Mjw") + "mainPage.8511ce7f.js" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    })
+]).then(()=>module.bundle.root("dw5RR"));
+
+},{"d72c1a5c51984937":"1MWPE","9c6c8a12c057d5a7":"lgJ39","d6d80187216049eb":"61B45"}],"1MWPE":[function(require,module,exports) {
+"use strict";
+var cacheLoader = require("ae7c5e215a4907e2");
+module.exports = cacheLoader(function(bundle) {
+    return new Promise(function(resolve, reject) {
+        // Don't insert the same link element twice (e.g. if it was already in the HTML)
+        var existingLinks = document.getElementsByTagName("link");
+        if ([].concat(existingLinks).some(function isCurrentBundle(link) {
+            return link.href === bundle && link.rel.indexOf("stylesheet") > -1;
+        })) {
+            resolve();
+            return;
+        }
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = bundle;
+        link.onerror = function(e) {
+            link.onerror = link.onload = null;
+            link.remove();
+            reject(e);
+        };
+        link.onload = function() {
+            link.onerror = link.onload = null;
+            resolve();
+        };
+        document.getElementsByTagName("head")[0].appendChild(link);
+    });
+});
+
+},{"ae7c5e215a4907e2":"j49pS"}],"j49pS":[function(require,module,exports) {
+"use strict";
+var cachedBundles = {};
+var cachedPreloads = {};
+var cachedPrefetches = {};
+function getCache(type) {
+    switch(type){
+        case "preload":
+            return cachedPreloads;
+        case "prefetch":
+            return cachedPrefetches;
+        default:
+            return cachedBundles;
+    }
 }
+module.exports = function(loader, type) {
+    return function(bundle) {
+        var cache = getCache(type);
+        if (cache[bundle]) return cache[bundle];
+        return cache[bundle] = loader.apply(null, arguments).catch(function(e) {
+            delete cache[bundle];
+            throw e;
+        });
+    };
+};
 
-},{"./basket.css":"ilSAs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","bundle-text:/src/assets/img/basket.svg":"fQLey"}],"ilSAs":[function() {},{}],"fQLey":[function(require,module,exports) {
-module.exports = "<?xml version=\"1.0\" standalone=\"no\"?>\n<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 20010904//EN\"\n \"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\">\n<svg version=\"1.0\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1280.000000pt\" height=\"926.000000pt\" viewBox=\"0 0 1280.000000 926.000000\" preserveAspectRatio=\"xMidYMid meet\">\n<g transform=\"translate(0.000000,926.000000) scale(0.100000,-0.100000)\" fill=\"#000000\" stroke=\"none\">\n<path d=\"M0 8800 l0 -460 443 0 442 0 82 -85 c250 -260 546 -621 782 -953\n1212 -1709 1769 -3729 1601 -5807 -24 -297 -51 -514 -107 -852 -36 -219 -36\n-223 -19 -268 11 -27 32 -56 54 -73 34 -25 41 -27 136 -26 78 1 121 7 188 27\n192 58 644 227 941 351 l159 66 176 -96 c479 -259 916 -448 1282 -554 80 -23\n166 -48 193 -56 41 -13 53 -13 95 0 26 8 112 33 192 56 365 106 805 296 1282\n555 l178 96 142 -59 c328 -136 558 -224 798 -307 191 -65 238 -77 331 -83 76\n-4 91 -2 125 17 50 29 73 60 82 113 8 44 6 66 -42 368 -257 1639 -84 3218 516\n4710 405 1005 1053 2016 1774 2768 l89 92 443 0 442 0 0 460 0 460 -6400 0\n-6400 0 0 -460z m2525 -476 c20 -21 15 -59 -35 -259 -44 -176 -95 -317 -157\n-436 -52 -100 -140 -221 -157 -216 -6 2 -33 34 -61 72 -170 233 -359 479 -465\n605 -66 80 -137 164 -157 188 -30 35 -34 45 -22 53 8 5 237 9 526 9 458 0 513\n-2 528 -16z m1834 3 c19 -23 -94 -407 -191 -652 -135 -339 -397 -835 -441\n-835 -13 0 -143 214 -277 454 -140 251 -334 652 -445 920 -38 92 -42 112 -22\n119 6 3 316 6 688 6 556 1 679 -1 688 -12z m1821 -2 c45 -55 -51 -497 -182\n-835 -55 -141 -160 -360 -237 -495 -82 -143 -221 -355 -232 -355 -21 0 -166\n251 -300 520 -160 322 -290 648 -389 976 -54 178 -56 190 -37 197 6 3 316 6\n688 6 585 1 678 -1 689 -14z m1814 9 c9 -3 16 -12 16 -20 0 -24 -98 -339 -151\n-486 -81 -225 -191 -473 -320 -728 -121 -237 -245 -451 -265 -457 -6 -2 -47\n52 -91 119 -293 448 -470 879 -557 1350 -25 133 -26 187 -3 216 7 9 156 12\n682 12 371 0 680 -3 689 -6z m1820 0 c9 -3 16 -12 16 -20 0 -16 -74 -196 -147\n-358 -170 -379 -575 -1116 -613 -1116 -36 0 -293 479 -406 755 -114 279 -243\n707 -222 732 8 10 141 13 683 13 371 0 680 -3 689 -6z m1516 -4 c16 -10 22 -1\n-81 -120 -146 -168 -370 -455 -527 -676 -94 -132 -94 -132 -127 -97 -136 144\n-266 472 -330 834 -13 72 -36 69 538 69 296 0 518 -4 527 -10z m-8458 -797\nc122 -254 337 -641 515 -927 41 -65 77 -124 79 -130 3 -7 -29 -53 -71 -102\n-101 -118 -385 -404 -402 -404 -7 0 -68 111 -137 253 -134 272 -222 435 -364\n676 l-91 154 70 76 c115 124 235 319 301 489 9 23 22 42 28 42 6 0 39 -57 72\n-127z m7156 85 c66 -170 186 -365 301 -489 l70 -76 -91 -154 c-142 -241 -230\n-404 -364 -676 -72 -147 -130 -253 -138 -253 -25 0 -365 352 -465 482 -11 15\n-1 37 81 170 190 306 388 664 511 921 31 64 61 117 67 117 6 0 19 -19 28 -42z\nm-5407 -80 c115 -315 366 -815 573 -1142 31 -50 56 -98 56 -108 0 -45 -640\n-646 -673 -632 -38 17 -601 764 -600 798 0 6 38 70 85 141 174 266 338 578\n453 863 32 78 63 142 70 142 7 0 23 -28 36 -62z m3664 -80 c113 -280 279 -597\n449 -858 45 -69 85 -130 89 -136 8 -13 -106 -179 -276 -404 -157 -208 -310\n-398 -325 -404 -21 -9 -248 189 -464 406 -116 116 -208 216 -208 226 0 10 25\n58 56 108 207 327 458 827 573 1142 13 34 29 62 36 62 7 0 38 -64 70 -142z\nm-1833 -179 c104 -258 300 -613 476 -860 51 -72 96 -137 98 -144 5 -13 -82\n-136 -210 -295 -149 -186 -397 -460 -416 -460 -18 0 -272 281 -416 460 -94\n117 -214 278 -214 287 0 5 45 72 99 148 202 283 361 576 505 928 9 22 21 37\n28 35 7 -3 29 -47 50 -99z m-2677 -1251 c82 -117 229 -308 363 -476 100 -125\n112 -145 100 -159 -50 -62 -809 -512 -842 -500 -7 3 -34 72 -61 154 -26 81\n-76 225 -111 320 -35 95 -64 179 -64 187 0 9 21 35 47 58 148 135 274 258 379\n371 65 70 121 127 124 127 4 0 33 -37 65 -82z m5439 -45 c105 -113 231 -236\n379 -371 26 -23 47 -49 47 -58 0 -8 -29 -92 -64 -187 -35 -95 -85 -239 -111\n-320 -27 -82 -54 -151 -61 -154 -33 -12 -792 438 -842 500 -12 14 3 37 121\n184 132 166 271 348 356 471 24 34 47 62 50 62 4 0 60 -57 125 -127z m-3673\n-91 c84 -118 334 -414 472 -559 48 -51 87 -96 87 -100 0 -32 -601 -523 -639\n-523 -26 0 -601 599 -601 626 0 7 62 66 138 130 75 65 217 198 315 296 98 97\n183 175 190 172 7 -2 24 -21 38 -42z m1945 -130 c98 -98 241 -231 317 -295 75\n-65 137 -124 137 -131 0 -28 -574 -626 -601 -626 -39 0 -639 491 -639 523 0 5\n35 46 78 91 133 138 309 344 437 511 58 75 83 104 91 105 1 0 82 -80 180 -178z\nm-2875 -764 c46 -51 177 -190 291 -309 191 -199 206 -217 190 -231 -27 -23\n-252 -157 -412 -246 -254 -140 -672 -342 -708 -342 -10 0 -85 69 -167 153\n-266 270 -254 255 -275 338 -34 129 -45 113 158 221 220 117 458 260 667 400\n88 59 163 107 166 107 3 1 43 -41 90 -91z m3803 4 c249 -168 472 -302 739\n-442 157 -82 150 -70 116 -204 l-21 -83 -207 -207 -208 -206 -59 26 c-151 68\n-514 248 -649 323 -166 92 -390 226 -417 249 -16 14 -1 32 190 231 114 119\n245 258 291 309 47 50 87 92 89 92 2 0 63 -40 136 -88z m-1937 -123 c105 -95\n306 -262 436 -360 64 -50 117 -93 117 -98 0 -13 -492 -431 -589 -500 -16 -12\n-35 -21 -43 -21 -24 0 -581 461 -616 510 -12 16 -2 27 105 108 130 99 331 265\n436 361 37 33 72 61 77 61 5 0 40 -28 77 -61z m-935 -800 c97 -87 204 -178\n456 -387 28 -24 52 -49 52 -56 0 -24 -516 -377 -854 -585 -106 -65 -156 -91\n-170 -87 -46 13 -716 567 -716 593 0 7 98 62 218 122 313 156 607 322 817 460\n33 22 65 40 72 40 6 1 62 -44 125 -100z m1959 30 c246 -155 493 -293 791 -441\n108 -53 199 -102 202 -107 13 -21 -687 -601 -725 -601 -51 0 -1019 642 -1019\n676 0 7 24 32 53 56 251 209 358 300 455 387 63 56 118 101 122 101 5 0 60\n-32 121 -71z m-3448 -872 c164 -144 410 -351 525 -441 34 -27 62 -54 62 -61 0\n-22 -798 -435 -840 -435 -19 0 -20 7 -20 99 0 132 -16 413 -37 646 -10 105\n-17 210 -18 234 l0 44 65 28 c36 15 73 28 83 28 10 1 91 -63 180 -142z m4953\n115 l69 -29 0 -44 c-1 -24 -8 -129 -18 -234 -22 -241 -37 -499 -37 -637 0\n-101 -1 -108 -20 -108 -34 0 -763 372 -821 419 l-22 18 78 64 c184 149 439\n364 555 468 68 61 129 111 136 111 6 0 42 -13 80 -28z m-2431 -98 c171 -124\n606 -417 743 -499 45 -28 82 -57 82 -65 -1 -8 -26 -33 -58 -54 -367 -253 -908\n-596 -939 -596 -50 0 -1009 627 -1000 654 2 6 32 29 66 51 191 121 617 408\n756 509 88 64 167 116 175 116 8 0 87 -52 175 -116z m-1393 -910 c168 -120\n514 -351 696 -465 61 -38 101 -70 100 -78 -7 -37 -1178 -621 -1245 -621 -10 0\n-94 46 -188 102 -184 111 -759 490 -770 507 -3 6 -4 19 0 29 3 10 161 94 413\n219 224 111 495 251 602 311 107 61 203 111 212 111 9 1 90 -51 180 -115z\nm2825 5 c109 -61 381 -201 605 -312 252 -125 410 -209 413 -219 4 -10 3 -23 0\n-29 -11 -16 -570 -385 -765 -503 -96 -58 -182 -106 -190 -106 -58 0 -1250 593\n-1250 621 0 6 41 36 91 67 157 98 629 414 754 505 66 47 125 87 132 87 6 0\n100 -50 210 -111z m-1390 -905 c114 -63 384 -203 598 -310 215 -107 391 -201\n393 -208 2 -8 -72 -50 -190 -108 -337 -167 -637 -289 -890 -363 l-128 -37\n-127 38 c-194 56 -393 131 -618 232 -187 83 -465 225 -465 236 0 6 166 93 368\n193 202 100 473 240 602 312 129 72 238 130 242 131 4 0 100 -52 215 -116z\nm-2680 -254 c89 -58 196 -127 238 -153 42 -27 74 -54 72 -60 -7 -23 -552 -226\n-567 -211 -4 5 0 66 10 139 10 72 23 182 30 245 12 127 23 165 43 153 6 -4 85\n-55 174 -113z m5147 -72 c9 -90 22 -202 28 -251 8 -59 8 -91 1 -98 -6 -6 -74\n14 -209 65 -295 112 -348 133 -352 144 -2 6 31 32 73 59 42 26 154 98 248 160\n140 92 174 110 183 98 5 -7 18 -87 28 -177z\"></path>\n</g>\n</svg>\n";
+},{}],"61B45":[function(require,module,exports) {
+"use strict";
+var cacheLoader = require("ca2a84f7fa4a3bb0");
+module.exports = cacheLoader(function(bundle) {
+    return new Promise(function(resolve, reject) {
+        // Don't insert the same script twice (e.g. if it was already in the HTML)
+        var existingScripts = document.getElementsByTagName("script");
+        if ([].concat(existingScripts).some(function isCurrentBundle(script) {
+            return script.src === bundle;
+        })) {
+            resolve();
+            return;
+        }
+        var preloadLink = document.createElement("link");
+        preloadLink.href = bundle;
+        preloadLink.rel = "preload";
+        preloadLink.as = "script";
+        document.head.appendChild(preloadLink);
+        var script = document.createElement("script");
+        script.async = true;
+        script.type = "text/javascript";
+        script.src = bundle;
+        script.onerror = function(e) {
+            var error = new TypeError("Failed to fetch dynamically imported module: ".concat(bundle, ". Error: ").concat(e.message));
+            script.onerror = script.onload = null;
+            script.remove();
+            reject(error);
+        };
+        script.onload = function() {
+            script.onerror = script.onload = null;
+            resolve();
+        };
+        document.getElementsByTagName("head")[0].appendChild(script);
+    });
+});
 
-},{}]},["j2YDk","1SICI"], "1SICI", "parcelRequire26f1")
+},{"ca2a84f7fa4a3bb0":"j49pS"}],"4iSxT":[function(require,module,exports) {
+module.exports = Promise.all([
+    require("efb275057ef4eb1b")(require("cbdd5019a1e57eb6").getBundleURL("10Mjw") + "catalogPage.6fcf4cc7.css" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    }),
+    require("f1a8e268b7603702")(require("cbdd5019a1e57eb6").getBundleURL("10Mjw") + "catalogPage.8117584d.js" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    })
+]).then(()=>module.bundle.root("bzkxp"));
+
+},{"efb275057ef4eb1b":"1MWPE","cbdd5019a1e57eb6":"lgJ39","f1a8e268b7603702":"61B45"}],"cYpNA":[function(require,module,exports) {
+module.exports = Promise.all([
+    require("dfc4898aafec2988")(require("36011c6f19c574e9").getBundleURL("10Mjw") + "AboutPage.cefe105d.css" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    }),
+    require("acc243b1494221e4")(require("36011c6f19c574e9").getBundleURL("10Mjw") + "AboutPage.33d74b54.js" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    })
+]).then(()=>module.bundle.root("6uxau"));
+
+},{"dfc4898aafec2988":"1MWPE","36011c6f19c574e9":"lgJ39","acc243b1494221e4":"61B45"}],"9u3nA":[function(require,module,exports) {
+module.exports = Promise.all([
+    require("c74cbde51e5625e9")(require("b9de02346e70529f").getBundleURL("10Mjw") + "payPage.761a1554.css" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    }),
+    require("e89eb6d268976d1d")(require("b9de02346e70529f").getBundleURL("10Mjw") + "payPage.7301daac.js" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    })
+]).then(()=>module.bundle.root("lcaQj"));
+
+},{"c74cbde51e5625e9":"1MWPE","b9de02346e70529f":"lgJ39","e89eb6d268976d1d":"61B45"}],"3ofVA":[function(require,module,exports) {
+module.exports = Promise.all([
+    require("f645a4c9ba879421")(require("f6a2fc4e23bedab7").getBundleURL("10Mjw") + "deliveryPage.d1fd7bea.css" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    }),
+    require("7816681940279241")(require("f6a2fc4e23bedab7").getBundleURL("10Mjw") + "deliveryPage.aa8f3133.js" + "?" + Date.now()).catch((err)=>{
+        delete module.bundle.cache[module.id];
+        throw err;
+    })
+]).then(()=>module.bundle.root("dUqX0"));
+
+},{"f645a4c9ba879421":"1MWPE","f6a2fc4e23bedab7":"lgJ39","7816681940279241":"61B45"}]},["j2YDk","1SICI"], "1SICI", "parcelRequire26f1")
 
 //# sourceMappingURL=index.18dbc454.js.map

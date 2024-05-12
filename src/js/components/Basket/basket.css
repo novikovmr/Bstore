@@ -1,4 +1,22 @@
+.basket-btn {
+    display: flex;
+    align-items: center;
+    margin-left: 0.75rem;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
 .basket-btn svg{
     width: 25px;
     height: 25px;
+    fill: #272727;
+    transition: fill 0.3s;
+    
 }
+
+.basket-btn:hover svg {
+    fill: #0b7e24;
+}
+

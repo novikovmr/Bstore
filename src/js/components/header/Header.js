@@ -1,6 +1,6 @@
-import { getBasketBtn } from "/src/js/components/Basket/Basket.js";
+import { getHeaderMenu } from "/src/js/components/Header__menu/Header__menu";
+import "./Header.css"
 import { getLogo } from "/src/js/components/logo/Logo.js";
-import { getNavLink } from "/src/js/components/NavLink/NavLink.js";
 
 export function getHeader() {
     const header = document.createElement("header");
@@ -12,24 +12,11 @@ export function getHeader() {
     const logo = getLogo();
     logo.classList.add("header__logo");
 
-    const nav = document.createElement("nav");
-    nav.classList.add("navigation", "header__navigation");
+    const headerMenu = getHeaderMenu();
 
-    const basketBtn = getBasketBtn();
+   
 
-    const links = {
-        "catalog" : getNavLink("/", "Каталог"),
-        "about" : getNavLink("/", "О нас"),
-        "pay" : getNavLink("/", "Оплата"),
-        "delivery" : getNavLink("/", "Доставка"),
-        "basket" : basketBtn,
-    }
-
-    for (const oneLink in links) {
-        nav.append(links[oneLink]);
-    }
-
-    container.append(logo, nav);
+    container.append(logo, headerMenu);
 
     header.append(container);
 

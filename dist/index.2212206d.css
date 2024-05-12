@@ -1,9 +1,50 @@
-.logo {
-  height: 35px;
+.header__menu {
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.header__navigation {
+  align-items: center;
+  gap: 1rem;
+  display: flex;
+}
+
+.basket-btn {
+  background-color: #0000;
+  border: none;
+  outline: none;
+  align-items: center;
+  margin-left: .75rem;
+  display: flex;
 }
 
 .basket-btn svg {
+  fill: #272727;
   width: 25px;
   height: 25px;
+  transition: fill .3s;
+}
+
+.basket-btn:hover svg {
+  fill: #0b7e24;
+}
+
+.navigation__link {
+  color: #272727;
+  padding: .75rem 0;
+}
+
+.header__container {
+  align-items: center;
+  gap: 3.75rem;
+  padding-top: .5rem;
+  padding-bottom: 2rem;
+  display: flex;
+}
+
+.logo {
+  height: 40px;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
