@@ -1,1 +1,1 @@
-{"mappings":"","sources":["8381b7ecd1fd7bea"],"sourcesContent":["@import \"334f20177fd2042a\";\n@import \"94847bec9730e512\";\n"],"names":[],"version":3,"file":"deliveryPage.d1fd7bea.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"ACAA","sources":["8381b7ecd1fd7bea","src/js/components/PageTitle/PageTitle.css"],"sourcesContent":["@import \"334f20177fd2042a\";\n@import \"94847bec9730e512\";\n",".title {\n    color: #272727;\n    font-weight: 500;\n}"],"names":[],"version":3,"file":"deliveryPage.d1fd7bea.css.map","sourceRoot":"/__parcel_source_root/"}

@@ -1,0 +1,1 @@
+{"mappings":"ACAA","sources":["6c3682efa11ed590","src/js/components/PageTitle/PageTitle.css"],"sourcesContent":["@import \"08ef50c502d27b41\";\n@import \"94847bec9730e512\";\n",".title {\n    color: #272727;\n    font-weight: 500;\n}"],"names":[],"version":3,"file":"basketPage.a11ed590.css.map","sourceRoot":"/__parcel_source_root/"}

@@ -1,13 +1,18 @@
 import "./logo.css";
-import logoImg from "/src/assets/img/logo.svg"
+import logo from "/src/assets/img/logo.svg"
 
 
 
 export function getLogo() {
-    const logo = document.createElement("img");
-    logo.classList.add("logo");
-    // logo.src = logoImg;
-    logo.src = logoImg;
+    const logoLink = document.createElement("a");
+    logoLink.classList.add("logo-link");
+    logoLink.href = "/";
+
+    const logoImg = document.createElement("img");
+    logoImg.classList.add("logo");
+
+    logoImg.src = logo;
     
-    return logo;
+    logoLink.append(logoImg);
+    return logoLink;
 }

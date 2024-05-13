@@ -1,1 +1,1 @@
-{"mappings":"","sources":[],"sourcesContent":[],"names":[],"version":3,"file":"mainPage.5679f0c2.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"ACAA","sources":["33e53ed65679f0c2","src/js/components/PageTitle/PageTitle.css"],"sourcesContent":["@import \"7555e67d3ebd66fb\";\n@import \"94847bec9730e512\";\n",".title {\n    color: #272727;\n    font-weight: 500;\n}"],"names":[],"version":3,"file":"mainPage.5679f0c2.css.map","sourceRoot":"/__parcel_source_root/"}

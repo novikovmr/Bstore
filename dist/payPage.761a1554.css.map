@@ -1,1 +1,1 @@
-{"mappings":"","sources":["5d0647d9761a1554"],"sourcesContent":["@import \"4dd5ca0a292aaf19\";\n@import \"94847bec9730e512\";\n"],"names":[],"version":3,"file":"payPage.761a1554.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"ACAA","sources":["5d0647d9761a1554","src/js/components/PageTitle/PageTitle.css"],"sourcesContent":["@import \"4dd5ca0a292aaf19\";\n@import \"94847bec9730e512\";\n",".title {\n    color: #272727;\n    font-weight: 500;\n}"],"names":[],"version":3,"file":"payPage.761a1554.css.map","sourceRoot":"/__parcel_source_root/"}

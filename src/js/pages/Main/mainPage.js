@@ -1,4 +1,5 @@
 import { getTitle } from "/src/js/components/PageTitle/PageTitle.js";
+import { getSlider } from "/src/js/components/Slider/slider";
 
 export function getMainPage() {
     const mainPage = document.createElement("div");
@@ -9,8 +10,9 @@ export function getMainPage() {
 
     const mainTitle = getTitle("Главное меню", "main__title");
     
+    const slider = getSlider();
 
-    container.append(mainTitle);
+    container.append(mainTitle, slider);
 
     mainPage.append(container);
 

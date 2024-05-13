@@ -46,6 +46,13 @@ router.on('/delivery', async () => {
     pageContainer.append(deliveryPage);
 })
 
+router.on('/basket', async () => {
+    pageContainer.innerHTML = "";
+    const pageModuleBasket = await import('/src/js/pages/Bakset/basketPage.js');
+    const basketPage = pageModuleBasket.getBasketPage();
+    pageContainer.append(basketPage);
+})
+
 router.resolve();
 
 app.append(header, pageContainer);
