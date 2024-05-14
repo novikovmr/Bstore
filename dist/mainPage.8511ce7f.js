@@ -620,34 +620,79 @@ parcelHelpers.export(exports, "getSlider", ()=>getSlider);
 var _sliderCss = require("./slider.css");
 var _airmaxPng = require("/src/assets/img/airmax.png");
 var _airmaxPngDefault = parcelHelpers.interopDefault(_airmaxPng);
-var _arrowLeftSvg = require("../../../assets/icons/arrow-left.svg");
-var _arrowLeftSvgDefault = parcelHelpers.interopDefault(_arrowLeftSvg);
+var _snapJpeg = require("/src/assets/img/snap.jpeg");
+var _snapJpegDefault = parcelHelpers.interopDefault(_snapJpeg);
+var _bomberPng = require("/src/assets/img/bomber.png");
+var _bomberPngDefault = parcelHelpers.interopDefault(_bomberPng);
 function getSlider() {
     const slider = document.createElement("div");
     slider.classList.add("slider");
+    const sliderMask = document.createElement("div");
+    sliderMask.classList.add("slider__mask");
     const image1 = document.createElement("img");
     image1.classList.add("slider__image");
     image1.src = (0, _airmaxPngDefault.default);
     const image2 = document.createElement("img");
     image2.classList.add("slider__image");
-    image2.src = (0, _airmaxPngDefault.default);
+    image2.src = (0, _snapJpegDefault.default);
     const image3 = document.createElement("img");
     image3.classList.add("slider__image");
-    image3.src = (0, _airmaxPngDefault.default);
+    image3.src = (0, _bomberPngDefault.default);
     const prevButton = document.createElement("button");
     prevButton.classList.add("prev-button");
     prevButton.setAttribute("label", "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u043F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0438\u0439 \u0441\u043B\u0430\u0439\u0434");
-    prevButton.innerHTML = (0, _arrowLeftSvgDefault.default);
-    slider.append(image1, image2, image3, prevButton);
+    const nextButton = document.createElement("button");
+    nextButton.classList.add("next-button");
+    nextButton.setAttribute("label", "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0441\u043B\u0430\u0439\u0434");
+    const leftArrow = document.createElement("i");
+    leftArrow.classList.add("fa-solid", "fa-chevron-left");
+    const rightArrow = document.createElement("i");
+    rightArrow.classList.add("fa-solid", "fa-chevron-right");
+    const titleMask = document.createElement("div");
+    titleMask.classList.add("slider__title-mask");
+    const sliderTitle = document.createElement("h2");
+    sliderTitle.classList.add("slider__title");
+    sliderTitle.textContent = "New collection";
+    const slides = [
+        image1,
+        image2,
+        image3
+    ];
+    const slideCount = slides.length;
+    let slideIndex = 0;
+    prevButton.addEventListener("click", showPrevSlide);
+    nextButton.addEventListener("click", showNextSlide);
+    function showPrevSlide() {
+        slideIndex = (slideIndex - 1 + slideCount) % slideCount;
+        updateSlider();
+    }
+    function showNextSlide() {
+        slideIndex = (slideIndex + 1) % slideCount;
+        updateSlider();
+    }
+    function updateSlider() {
+        slides.forEach((slide, index)=>{
+            if (index === slideIndex) slide.style.display = "block";
+            else slide.style.display = "none";
+        });
+    }
+    updateSlider();
+    prevButton.append(leftArrow);
+    nextButton.append(rightArrow);
+    // sliderMask.append(image1, image2, image3,)
+    slider.append(sliderMask, image1, image2, image3, prevButton, nextButton, sliderTitle);
     return slider;
 }
 
-},{"./slider.css":"a4zBS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","/src/assets/img/airmax.png":"5E2Kh","../../../assets/icons/arrow-left.svg":"eBUDj"}],"a4zBS":[function() {},{}],"5E2Kh":[function(require,module,exports) {
+},{"./slider.css":"a4zBS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","/src/assets/img/airmax.png":"5E2Kh","/src/assets/img/snap.jpeg":"3uAKn","/src/assets/img/bomber.png":"4FCsV"}],"a4zBS":[function() {},{}],"5E2Kh":[function(require,module,exports) {
 module.exports = require("17e85b0721501957").getBundleURL("lMW6L") + "airmax.f3361950.png" + "?" + Date.now();
 
-},{"17e85b0721501957":"lgJ39"}],"eBUDj":[function(require,module,exports) {
-module.exports = require("6a1f2263c75e057c").getBundleURL("lMW6L") + "arrow-left.e02d8f58.svg" + "?" + Date.now();
+},{"17e85b0721501957":"lgJ39"}],"3uAKn":[function(require,module,exports) {
+module.exports = require("86726c9b4a672ff8").getBundleURL("lMW6L") + "snap.d09fc46b.jpeg" + "?" + Date.now();
 
-},{"6a1f2263c75e057c":"lgJ39"}]},["59s19"], null, "parcelRequire26f1")
+},{"86726c9b4a672ff8":"lgJ39"}],"4FCsV":[function(require,module,exports) {
+module.exports = require("f517ae352acda42f").getBundleURL("lMW6L") + "bomber.39243730.png" + "?" + Date.now();
+
+},{"f517ae352acda42f":"lgJ39"}]},["59s19"], null, "parcelRequire26f1")
 
 //# sourceMappingURL=mainPage.8511ce7f.js.map
