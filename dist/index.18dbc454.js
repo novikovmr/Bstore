@@ -1190,6 +1190,7 @@ parcelHelpers.export(exports, "getHeader", ()=>getHeader);
 var _headerMenu = require("/src/js/components/Header__menu/Header__menu");
 var _headerCss = require("./Header.css");
 var _logoJs = require("/src/js/components/logo/Logo.js");
+var _scrollbar = require("../Scrollbar/Scrollbar");
 function getHeader() {
     const header = document.createElement("header");
     header.classList.add("header");
@@ -1198,12 +1199,13 @@ function getHeader() {
     const logo = (0, _logoJs.getLogo)();
     logo.classList.add("header__logo");
     const headerMenu = (0, _headerMenu.getHeaderMenu)();
+    const progressBar = (0, _scrollbar.getProgressBar)();
     container.append(logo, headerMenu);
-    header.append(container);
+    header.append(progressBar, container);
     return header;
 }
 
-},{"/src/js/components/Header__menu/Header__menu":"99DHK","./Header.css":"a0VBO","/src/js/components/logo/Logo.js":"kAche","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"99DHK":[function(require,module,exports) {
+},{"/src/js/components/Header__menu/Header__menu":"99DHK","./Header.css":"a0VBO","/src/js/components/logo/Logo.js":"kAche","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../Scrollbar/Scrollbar":"anrst"}],"99DHK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getHeaderMenu", ()=>getHeaderMenu);
@@ -1320,7 +1322,32 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"jroh0":[function(require,module,exports) {
+},{}],"anrst":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getProgressBar", ()=>getProgressBar);
+var _scrollbarCss = require("./Scrollbar.css");
+function getProgressBar() {
+    const progressBar = document.createElement("div");
+    progressBar.classList.add("progressbar");
+    const progressBarLine = document.createElement("div");
+    progressBarLine.classList.add("progressbar__line");
+    progressBar.append(progressBarLine);
+    window.addEventListener("scroll", fillProgressLine);
+    window.addEventListener("resize", fillProgressLine);
+    let fullHeight, innerHeight;
+    function fillProgressLine() {
+        fullHeight = document.body.scrollHeight;
+        innerHeight = window.innerHeight;
+        progressBarLine.style.width = pageYOffset * 100 / (fullHeight - innerHeight) + "%";
+        console.log(fullHeight);
+        console.log(innerHeight);
+    }
+    fillProgressLine();
+    return progressBar;
+}
+
+},{"./Scrollbar.css":"cOgah","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cOgah":[function() {},{}],"jroh0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getPageContainer", ()=>getPageContainer);

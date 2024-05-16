@@ -1,6 +1,7 @@
 import { getHeaderMenu } from "/src/js/components/Header__menu/Header__menu";
 import "./Header.css"
 import { getLogo } from "/src/js/components/logo/Logo.js";
+import { getProgressBar } from "../Scrollbar/Scrollbar";
 
 export function getHeader() {
     const header = document.createElement("header");
@@ -14,11 +15,13 @@ export function getHeader() {
 
     const headerMenu = getHeaderMenu();
 
-   
+    const progressBar = getProgressBar();
+
+    
 
     container.append(logo, headerMenu);
 
-    header.append(container);
+    header.append(progressBar, container);
 
     return header;
 }

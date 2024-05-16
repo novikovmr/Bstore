@@ -1,0 +1,60 @@
+.hero {
+    padding: 40px 0;
+}
+
+.hero__top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero__card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+    background-color: transparent;
+
+    box-shadow: 3px 6px 12px -3px rgba(0,0,0,0.75);
+}
+
+.hero-card__image {
+    border-radius: 10px;
+}
+
+.hero-card__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: aliceblue;
+    text-transform: uppercase;
+}
+
+.hero-card__text {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: aliceblue;
+}
+
+.hero__card .hero-card__link {
+    display: block;
+    padding: 10px 10px;
+    max-width: 80%;
+    position: absolute;
+    bottom: 50%;
+    opacity: 0;
+    transition: 0.5s;
+
+    /* background-color: #7b7b7b51; */
+    border-radius: 10px;
+}
+
+.hero__card:hover .hero-card__image {
+    filter: blur(7px);
+}
+
+.hero__card:hover .hero-card__link {
+    opacity: 1;
+}
+

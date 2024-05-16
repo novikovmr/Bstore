@@ -3,4 +3,10 @@
     padding: 0.75rem 0;
 
     color: #272727;
+    transition: all 0.5s;
+}
+
+.navigation__link:hover {
+    color: #aae230;
+    transform: translateY(-2px);
 }

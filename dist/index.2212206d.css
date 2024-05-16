@@ -34,6 +34,12 @@
 .navigation__link {
   color: #272727;
   padding: .75rem 0;
+  transition: all .5s;
+}
+
+.navigation__link:hover {
+  color: #aae230;
+  transform: translateY(-2px);
 }
 
 .header__container {
@@ -50,5 +56,19 @@
 
 .logo {
   height: 40px;
+}
+
+.progressbar {
+  z-index: 100;
+  background-color: #aae230;
+  width: 100%;
+  height: 2px;
+  position: fixed;
+}
+
+.progressbar__line {
+  background-color: #10f5f1;
+  width: 0;
+  height: 100%;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

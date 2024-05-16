@@ -589,19 +589,22 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getMainPage", ()=>getMainPage);
 var _pageTitleJs = require("/src/js/components/PageTitle/PageTitle.js");
 var _slider = require("/src/js/components/Slider/slider");
+var _sectionCollection = require("/src/js/components/Section-collection/Section-collection");
+var _scrollbar = require("../../components/Scrollbar/Scrollbar");
 function getMainPage() {
     const mainPage = document.createElement("div");
     mainPage.classList.add("page", "main");
     const container = document.createElement("div");
     container.classList.add("container", "main__container");
-    const mainTitle = (0, _pageTitleJs.getTitle)("\u0413\u043B\u0430\u0432\u043D\u043E\u0435 \u043C\u0435\u043D\u044E", "main__title");
+    // const mainTitle = getTitle("Главное меню", "main__title");
     const slider = (0, _slider.getSlider)();
-    container.append(mainTitle, slider);
+    const collectionSect = (0, _sectionCollection.getSectionCollection)();
+    container.append(slider, collectionSect);
     mainPage.append(container);
     return mainPage;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","/src/js/components/PageTitle/PageTitle.js":"3YEz6","/src/js/components/Slider/slider":"jivPq"}],"3YEz6":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","/src/js/components/PageTitle/PageTitle.js":"3YEz6","/src/js/components/Slider/slider":"jivPq","/src/js/components/Section-collection/Section-collection":"bJGlR","../../components/Scrollbar/Scrollbar":"anrst"}],"3YEz6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getTitle", ()=>getTitle);
@@ -693,6 +696,86 @@ module.exports = require("86726c9b4a672ff8").getBundleURL("lMW6L") + "snap.d09fc
 },{"86726c9b4a672ff8":"lgJ39"}],"4FCsV":[function(require,module,exports) {
 module.exports = require("f517ae352acda42f").getBundleURL("lMW6L") + "bomber.39243730.png" + "?" + Date.now();
 
-},{"f517ae352acda42f":"lgJ39"}]},["59s19"], null, "parcelRequire26f1")
+},{"f517ae352acda42f":"lgJ39"}],"bJGlR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getSectionCollection", ()=>getSectionCollection);
+var _sectionCollectionCss = require("./Section-collection.css");
+var _child2Jpg = require("/src/assets/img/child2.jpg");
+var _child2JpgDefault = parcelHelpers.interopDefault(_child2Jpg);
+var _man2Jpg = require("/src/assets/img/man2.jpg");
+var _man2JpgDefault = parcelHelpers.interopDefault(_man2Jpg);
+var _woman2Jpg = require("/src/assets/img/woman2.jpg");
+var _woman2JpgDefault = parcelHelpers.interopDefault(_woman2Jpg);
+function getSectionCollection() {
+    const section = document.createElement("section");
+    section.classList.add("section", "hero");
+    const topPart = document.createElement("div");
+    topPart.classList.add("hero__top");
+    const bottomPart = document.createElement("div");
+    bottomPart.classList.add("hero__bottom");
+    const heroCard = document.createElement("div");
+    heroCard.classList.add("hero__card");
+    const heroCard2 = document.createElement("div");
+    heroCard2.classList.add("hero__card");
+    const heroCard3 = document.createElement("div");
+    heroCard3.classList.add("hero__card");
+    const childImg = document.createElement("img");
+    childImg.classList.add("hero-card__image");
+    childImg.src = (0, _child2JpgDefault.default);
+    const manImg = document.createElement("img");
+    manImg.classList.add("hero-card__image");
+    manImg.src = (0, _man2JpgDefault.default);
+    const womanImg = document.createElement("img");
+    womanImg.classList.add("hero-card__image");
+    womanImg.src = (0, _woman2JpgDefault.default);
+    const cardTitleLink = document.createElement("a");
+    cardTitleLink.classList.add("hero-card__link");
+    cardTitleLink.href = "/";
+    const cardTitleLink2 = document.createElement("a");
+    cardTitleLink2.classList.add("hero-card__link");
+    cardTitleLink2.href = "/";
+    const cardTitleLink3 = document.createElement("a");
+    cardTitleLink3.classList.add("hero-card__link");
+    cardTitleLink3.href = "/";
+    const cardTitle = document.createElement("h4");
+    cardTitle.classList.add("hero-card__title");
+    cardTitle.textContent = "\u041D\u043E\u0432\u0430\u044F \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u044F";
+    const cardText = document.createElement("p");
+    cardText.classList.add("hero-card__text");
+    cardText.textContent = "\u0414\u043B\u044F \u0434\u0435\u0442\u0435\u0439";
+    const cardTitle2 = document.createElement("h4");
+    cardTitle2.classList.add("hero-card__title");
+    cardTitle2.textContent = "\u041D\u043E\u0432\u0430\u044F \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u044F";
+    const cardText2 = document.createElement("p");
+    cardText2.classList.add("hero-card__text");
+    cardText2.textContent = "\u0414\u043B\u044F \u043C\u0443\u0436\u0447\u0438\u043D";
+    const cardTitle3 = document.createElement("h4");
+    cardTitle3.classList.add("hero-card__title");
+    cardTitle3.textContent = "\u041D\u043E\u0432\u0430\u044F \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u044F";
+    const cardText3 = document.createElement("p");
+    cardText3.classList.add("hero-card__text");
+    cardText3.textContent = "\u0414\u043B\u044F \u0436\u0435\u043D\u0449\u0438\u043D";
+    cardTitleLink.append(cardText, cardTitle);
+    cardTitleLink2.append(cardText2, cardTitle2);
+    cardTitleLink3.append(cardText3, cardTitle3);
+    heroCard.append(childImg, cardTitleLink);
+    heroCard2.append(manImg, cardTitleLink2);
+    heroCard3.append(womanImg, cardTitleLink3);
+    topPart.append(heroCard, heroCard2, heroCard3);
+    section.append(topPart, bottomPart);
+    return section;
+}
+
+},{"./Section-collection.css":"cdEdO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","/src/assets/img/child2.jpg":"eazOP","/src/assets/img/man2.jpg":"18nP4","/src/assets/img/woman2.jpg":"3SDW5"}],"cdEdO":[function() {},{}],"eazOP":[function(require,module,exports) {
+module.exports = require("c106d1f1229753be").getBundleURL("lMW6L") + "child2.6d1d9217.jpg" + "?" + Date.now();
+
+},{"c106d1f1229753be":"lgJ39"}],"18nP4":[function(require,module,exports) {
+module.exports = require("e026b82b067271cd").getBundleURL("lMW6L") + "man2.95eb242f.jpg" + "?" + Date.now();
+
+},{"e026b82b067271cd":"lgJ39"}],"3SDW5":[function(require,module,exports) {
+module.exports = require("873920beab2e3f82").getBundleURL("lMW6L") + "woman2.8896db89.jpg" + "?" + Date.now();
+
+},{"873920beab2e3f82":"lgJ39"}]},["59s19"], null, "parcelRequire26f1")
 
 //# sourceMappingURL=mainPage.8511ce7f.js.map
